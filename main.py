@@ -9,3 +9,6 @@ while True:
         if event.type == pygame.QUIT:
             pygame.quit()
             exit()
+
+game = Game()
+game.run()
