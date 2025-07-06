@@ -34,6 +34,10 @@ class Level:
             for ent in self.entity_list:
                 self.window.blit(source=ent.surf, dest=ent.rect)
                 ent.move()
+                if ent.name == 'Player1':
+                    self.level_text(16, f'Player1 - Health:{ent.health} | Score: {ent.score}', COLOR_BLUE, (10, 25))
+                if ent.name == 'Player2':
+                    self.level_text(16, f'Player2 - Health:{ent.health} | Score: {ent.score}', COLOR_BLUE, (10, 45))
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()

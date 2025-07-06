@@ -10,7 +10,32 @@ COLOR_WHITE = (255, 255, 255)
 
 # E
 
+ENTITY_DAMAGE = {
+    'lv1-0': 0,
+    'lv1-1': 1,
+    'lv1-2': 2,
+    'lv1-3': 3,
+    'lv1-4': 4,
+    'Player1': 1,
+    'Player2': 1,
+    'Enemy1': 1,
+    'Enemy2': 1,
+}
+
 EVENT_ENEMY = pygame.USEREVENT + 1
+
+ENTITY_SCORE = {
+    'lv1-0': 0,
+    'lv1-1': 0,
+    'lv1-2': 0,
+    'lv1-3': 0,
+    'lv1-4': 0,
+    'Player1': 0,
+    'Player2': 0,
+    'Enemy1': 100,
+    'Enemy2': 125,
+}
+
 
 ENTITY_SPEED = {
     'lv1-0': 0,
