@@ -1,14 +1,13 @@
 import pygame.image
 from pygame import Surface, Rect
 from pygame.font import Font
-
 from code.Const import WIN_WIDTH, MENU_OPTION, COLOR_BLUE, COLOR_CYAN, COLOR_GREEN
 
 
 class Menu:
     def __init__(self, window):
         self.window = window
-        self.surf = pygame.image.load('./asset/menu.png')
+        self.surf = pygame.image.load('./asset/menu.png').convert_alpha()
         self.rect = self.surf.get_rect(left=0, top=0)
 
     def run(self):

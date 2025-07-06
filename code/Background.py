@@ -1,6 +1,3 @@
-#!/usr/bin/python
-# -*- coding: utf-8 -*-
-
 from code.Entity import Entity
 from code.Const import WIN_WIDTH, ENTITY_SPEED
 
