@@ -9,6 +9,7 @@ from pygame.font import Font
 from code.Const import WIN_HEIGHT, COLOR_BLUE, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
+from code.EntityMediator import EntityMediator
 
 
 class Level:
@@ -28,7 +29,6 @@ class Level:
         pygame.mixer_music.load(f'./asset/{self.name}.mp3')
         pygame.mixer_music.play(-1)
         clock = pygame.time.Clock()
-
         while True:
             clock.tick(60)
             for ent in self.entity_list:
@@ -48,7 +48,12 @@ class Level:
             self.level_text(16, f'entidades: {len(self.entity_list)}', COLOR_BLUE, (10, WIN_HEIGHT - 20))
             pygame.display.flip()
 
+            # Colisão e Verificação de vida
+            EntityMediator.verify_collision(entity_list=self.entity_list)
+            EntityMediator.verify_health(entity_list=self.entity_list)
+
         pass
+
 
     def level_text(self, text_size: int, text: str, text_color: tuple, text_pos: tuple):
         text_font: Font = pygame.font.SysFont(name="Lucida Sans Typewriter", size=text_size)
