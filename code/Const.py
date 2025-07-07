@@ -7,6 +7,7 @@ COLOR_CYAN = (0, 255, 255)
 COLOR_YELLOW = (255, 255, 0)
 COLOR_GREEN = (0, 255, 0)
 COLOR_WHITE = (255, 255, 255)
+COLOR_BLACK = (0, 0, 0)
 
 # E
 
@@ -95,7 +96,7 @@ ENTITY_HEALTH = {
 }
 
 # M
-MENU_OPTION = ('NEW GAME 1P', 'NEW GAME 2P', 'SCORE', 'EXIT')
+MENU_OPTION = ('NEW GAME 1P', 'NEW GAME 2P', 'EXIT')
 
 # P
 PLAYER_KEY_UP = {'Player1': pygame.K_UP,
@@ -108,7 +109,7 @@ PLAYER_KEY_RIGHT = {'Player1': pygame.K_RIGHT,
                     'Player2': pygame.K_d}
 
 # S
-SPAWN_TIME = 4000
+SPAWN_TIME = 2000
 
 # T
 TIMEOUT_STEP = 100
