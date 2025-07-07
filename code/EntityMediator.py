@@ -1,3 +1,4 @@
+from code.Ally import Ally
 from code.Player import Player
 
 from code.Enemy import Enemy
@@ -8,7 +9,7 @@ class EntityMediator:
 
     @staticmethod
     def __verify_collision_window(ent: Entity):
-        if isinstance(ent, Enemy):
+        if isinstance(ent, (Enemy, Ally)):
             if ent.rect.right <= 0:
                 ent.health = 0
 
@@ -18,6 +19,10 @@ class EntityMediator:
         if isinstance(ent1, Enemy) and isinstance(ent2, Player):
             valid_interaction = True
         if isinstance(ent1, Player) and isinstance(ent2, Enemy):
+            valid_interaction = True
+        if isinstance(ent1, Player) and isinstance(ent2, Ally):
+            valid_interaction = True
+        if isinstance(ent1, Ally) and isinstance(ent2, Player):
             valid_interaction = True
 
         if valid_interaction:  # mesmo que if valid_interaction == True:
@@ -31,16 +36,28 @@ class EntityMediator:
                 ent2.last_dmg = ent1.name
 
     @staticmethod
-    def __give_score(enemy: Enemy, entity_list: list[Entity]):
-        if enemy.last_dmg == 'Player1':
-            for ent in entity_list:
-                if ent.name == 'Player1':
-                    ent.score -= enemy.score
-        elif enemy.last_dmg == 'Player2':
-            for ent in entity_list:
-                if ent.name == 'Player2':
-                    ent.score -= enemy.score
+    def __give_score(entity: Entity, entity_list: list[Entity]):
+        if isinstance(entity, Enemy):
+            if entity.last_dmg == 'Player1':
+                for ent in entity_list:
+                    if ent.name == 'Player1':
+                        ent.score -= entity.score
+            elif entity.last_dmg == 'Player2':
+                for ent in entity_list:
+                    if ent.name == 'Player2':
+                        ent.score -= entity.score
 
+        elif isinstance(entity, Ally):
+            if entity.last_dmg == 'Player1':
+                for ent in entity_list:
+                    if ent.name == 'Player1':
+                        ent.score += entity.score
+                        ent.health += entity.damage
+            elif entity.last_dmg == 'Player2':
+                for ent in entity_list:
+                    if ent.name == 'Player2':
+                        ent.score += entity.score
+                        ent.health += entity.damage
 
     @staticmethod
     def verify_collision(entity_list: list[Entity]):
@@ -53,9 +70,11 @@ class EntityMediator:
 
     @staticmethod
     def verify_health(entity_list: list[Entity]):
+        to_remove = []
         for ent in entity_list:
-            if ent.health <= 0:
-                if isinstance(ent, Enemy):
+            if ent is not None and hasattr(ent, "health") and ent.health <= 0:
+                if isinstance(ent, (Enemy, Ally)):
                     EntityMediator.__give_score(ent, entity_list)
-                entity_list.remove(ent)
-                # del ent
+                to_remove.append(ent)
+        for ent in to_remove:
+            entity_list.remove(ent)

@@ -16,7 +16,8 @@ class Menu:
         pygame.mixer_music.play(-1)
         while True:
             self.window.blit(source=self.surf, dest=self.rect)
-            self.menu_text(32, 'Ice Snack Attack', COLOR_GREEN, ((WIN_WIDTH / 2), 90))
+            self.menu_text(32, 'Against', COLOR_GREEN, ((WIN_WIDTH / 2), 90))
+            self.menu_text(32, 'the Freeze', COLOR_GREEN, ((WIN_WIDTH / 2), 130))
 
             for i in range(len(MENU_OPTION)):
                 if i == menu_option:
