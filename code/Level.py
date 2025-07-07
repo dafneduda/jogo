@@ -1,13 +1,12 @@
 import random
 import sys
-from random import choice
 
 import pygame
 from pygame import Surface, Rect
 from pygame.font import Font
 
 from code.Const import WIN_HEIGHT, COLOR_BLUE, MENU_OPTION, EVENT_ENEMY, SPAWN_TIME, EVENT_ALLY, EVENT_TIMEOUT, \
-    TIMEOUT_STEP, TIMEOUT_LEVEL, COLOR_YELLOW, COLOR_WHITE, COLOR_BLACK
+    TIMEOUT_STEP, TIMEOUT_LEVEL, COLOR_BLACK
 from code.Entity import Entity
 from code.EntityFactory import EntityFactory
 from code.EntityMediator import EntityMediator
